@@ -1,6 +1,6 @@
-# Sarcophagus V2 SDK
+# HeirTrust V2 SDK
 
-The Sarcophagus V2 SDK is a TypeScript library designed to simplify the interaction with the Sarcophagus V2 protocol. This SDK provides a high-level interface for developers to easily interact with the protocol's smart contracts and related services.
+The HeirTrust V2 SDK is a TypeScript library designed to simplify the interaction with the HeirTrust V2 protocol. This SDK provides a high-level interface for developers to easily interact with the protocol's smart contracts and related services.
 
 ## Features
 
@@ -9,22 +9,22 @@ The Sarcophagus V2 SDK is a TypeScript library designed to simplify the interact
 - Provides utility functions for common tasks
 
 ## Documentation
-Read more about how to use the Sarcophagus V2 SDK [here](https://sarcophagus-org.github.io/sarcophagus-v2-sdk/index.html).
+Read more about how to use the HeirTrust V2 SDK [here](https://HeirTrust.github.io/HeirTrust-v2-sdk/index.html).
 
 ## Installation
 
 To install the SDK, run the following command in your project directory:
 
 ```
-npm install @sarcophagus-org/sarcophagus-v2-sdk
+npm install @HeirTrust/HeirTrust-sdk
 ```
 
 ## Usage
 
-Here's a basic example of using the Sarcophagus V2 SDK in a TypeScript or JavaScript project:
+Here's a basic example of using the HeirTrust V2 SDK in a TypeScript or JavaScript project:
 
 ```typescript
-import { SarcoClient } from '@sarcophagus-org/sarcophagus-v2-sdk';
+import { SarcoClient } from '@HeirTrust/HeirTrust-sdk';
 
 // Initialize the client with a custom provider and signer
 const sarco = new SarcoClient({
@@ -58,12 +58,12 @@ helloWorld(): string;
 ## Local Development
 The SDK may be tested locally by cloning the SDK repository and linking it to your project. 
 ```
-git clone git@github.com:sarcophagus-org/sarcophagus-v2-sdk.git
-cd sarcophagus-v2-sdk
+git clone git@github.com:HeirTrust/HeirTrust-v2-sdk.git
+cd HeirTrust-v2-sdk
 npm run build
 npm link 
 cd path/to/your/project
-npm link sarcophagus-v2-sdk
+npm link HeirTrust-sdk
 ```
 
 Then it may be imported as if it were added to the package.json.

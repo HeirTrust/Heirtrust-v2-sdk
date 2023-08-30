@@ -1,17 +1,18 @@
 {
-  "name": "@sarcophagus-org/sarcophagus-v2-sdk",
-  "version": "0.2.5",
+  "name": "@heirtrust/heirtrust-sdk",
+  "version": "0.0.1",
   "main": "dist/server.js",
   "browser": "dist/browser.js",
   "type": "module",
   "sideEffects": false,
-  "license": "UNLICENSED",
+  
   "files": [
     "dist/**/*"
   ],
   "scripts": {
     "test": "jest",
     "build": "rm -rf dist && tsc && npx babel src --out-dir dist --extensions \".ts\" --copy-files",
+    "build-windows": "del dist && tsc && npx babel src --out-dir dist --extensions \".ts\" --copy-files",
     "prettier": "npx prettier --write src/**",
     "docs": "typedoc --out docs --readme README.md src"
   },
@@ -25,7 +26,7 @@
     "@libp2p/webrtc-star": "^5.0.3",
     "@libp2p/websockets": "^5.0.1",
     "@multiformats/multiaddr": "^10.0.3",
-    "@sarcophagus-org/sarcophagus-v2-contracts": "^0.17.2",
+    "@heirtrust/heirtrust-v2-contracts": "^0.0.3",
     "arweave": "1.11.4",
     "ecies-geth": "^1.6.11",
     "ethers": "^5.7.2",
@@ -49,5 +50,9 @@
     "ts-jest": "^29.1.0",
     "typedoc": "^0.24.4",
     "typescript": "^4.9.5"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
   }
 }
