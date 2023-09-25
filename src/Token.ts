@@ -1,4 +1,4 @@
-import { ERC20, SarcoTokenMock__factory } from '@sarcophagus-org/sarcophagus-v2-contracts';
+import { ERC20, HeirTrustTokenMock__factory, HeirTrustToken__factory  } from '@heirtrust/heirtrust-v2-contracts';
 import { BigNumber, ethers } from 'ethers';
 import { safeContractCall } from './helpers/safeContractCall';
 import { CallOptions } from './types';
@@ -9,7 +9,8 @@ export class Token {
 
   constructor(sarcoTokenAddress: string, diamondDeployAddress: string, signer: ethers.Signer) {
     this.diamondDeployAddress = diamondDeployAddress;
-    this.sarcoToken = new ethers.Contract(sarcoTokenAddress, SarcoTokenMock__factory.abi, signer);
+    //@ts-ignore
+    this.sarcoToken = new ethers.Contract(sarcoTokenAddress, HeirTrustToken__factory.abi, signer);
   }
 
   async approve(amount: BigNumber, options: CallOptions = {}) {
