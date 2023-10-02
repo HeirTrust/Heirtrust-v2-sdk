@@ -109,23 +109,29 @@ export class Archaeologist {
    *
    * @returns The full profiles of the given archaeologists.
    */
-  async getFullArchProfiles(addresses?: string[], filterOffline = false): Promise<ArchaeologistData[]> {
+  async getFullArchProfiles(
+    args: { addresses?: string[]; filterOffline?: boolean } = {}
+  ): Promise<ArchaeologistData[]> {
     try {
-      if (!addresses) {
+      // - Use provided addresses, or default to get all registered archaeologists if no addresses are provided
+      // - filterOffline defaults to false
+      const {
         addresses = (await safeContractCall(
           this.viewStateFacet,
           'getArchaeologistProfileAddresses',
           []
-        )) as unknown as string[];
-      }
+        )) as unknown as string[],
+        filterOffline = false,
+      } = args;
 
-      addresses = addresses.map(a => a.toLowerCase());
+      const addressesLowerCase = addresses.map(a => a.toLowerCase());
+
       const archSubgraphData = (await getArchaeologists(this.subgraphUrl)).filter(arch =>
-        addresses!.includes(arch.address)
+        addressesLowerCase!.includes(arch.address)
       );
 
       const profiles = (await safeContractCall(this.viewStateFacet, 'getArchaeologistProfiles', [
-        addresses,
+        addressesLowerCase,
       ])) as unknown as ArchaeologistProfile[];
 
       const registeredArchaeologists = archSubgraphData.map(arch => {
@@ -303,7 +309,8 @@ export class Archaeologist {
         const outboundMsg = JSON.stringify(negotiationParams);
 
         try {
-          const stream = await arch.connection.newStream(NEGOTIATION_SIGNATURE_STREAM);
+          const contextChainId = (await this.signer.provider?.getNetwork())?.chainId;
+          const stream = await arch.connection.newStream(`${NEGOTIATION_SIGNATURE_STREAM}${contextChainId && `-${contextChainId}`}`);
 
           await pipe([new TextEncoder().encode(outboundMsg)], stream, async (source: any) => {
             for await (const data of source) {
