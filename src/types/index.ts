@@ -1,7 +1,7 @@
 import { ApiConfig as ArweaveConfig } from 'arweave/node/lib/api';
 import { ArchaeologistData } from './archaeologist';
 import { BigNumber } from 'ethers';
-import { IERC20 } from '@sarcophagus-org/sarcophagus-v2-contracts';
+import { IERC20 } from '@heirtrust/heirtrust-v2-contracts';
 
 export { RecoverPublicKeyErrorStatus } from './utils';
 export type { RecoverPublicKeyResponse } from './utils';

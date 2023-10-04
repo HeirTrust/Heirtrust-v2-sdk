@@ -166,7 +166,9 @@ export class WebSarcoClient {
    */
   public setSponsoredBundlr = async (signerPublicKey: string, signerEndpoint: string) => {
     const bundlr = this.getBundlr(signerPublicKey, signerEndpoint);
+    this.api.setBundlr(bundlr);
     await this.connectBundlr();
+  };
 
   async startLibp2pNode() {
     console.log(`LibP2P node starting with peerID: ${this.p2pNode.peerId.toString()}`);
