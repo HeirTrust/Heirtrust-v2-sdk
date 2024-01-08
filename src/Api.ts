@@ -1,4 +1,4 @@
-import { EmbalmerFacet__factory, ViewStateFacet__factory } from '@heirtrust/heirtrust-v2-contracts';
+import { EmbalmerFacet__factory, ViewStateFacet__factory, ThirdPartyFacet__factory } from '@heirtrust/heirtrust-v2-contracts';
 import { BigNumber, ethers } from 'ethers';
 import { safeContractCall } from './helpers/safeContractCall';
 import { CallOptions, SarcoNetworkConfig } from './types';
@@ -42,6 +42,7 @@ export class Api {
   public bundlr: SarcoWebBundlr | Bundlr;
 
   private embalmerFacet: ethers.Contract;
+  private thirdPartyFacet: ethers.Contract;
   private subgraphUrl: string;
   private viewStateFacet: ethers.Contract;
   private signer: ethers.Signer;
@@ -57,6 +58,7 @@ export class Api {
     arweave: Arweave
   ) {
     this.embalmerFacet = new ethers.Contract(diamondDeployAddress, EmbalmerFacet__factory.abi, signer);
+    this.thirdPartyFacet = new ethers.Contract(diamondDeployAddress, ThirdPartyFacet__factory.abi, signer);
     this.viewStateFacet = new ethers.Contract(diamondDeployAddress, ViewStateFacet__factory.abi, signer);
     this.subgraphUrl = networkConfig.subgraphUrl;
     this.signer = signer;
@@ -148,11 +150,12 @@ export class Api {
    * @returns The transaction response
    * */
   async cleanSarcophagus(sarcoId: string, options: CallOptions = {}): Promise<ethers.providers.TransactionResponse> {
-    return safeContractCall(this.embalmerFacet, 'cleanSarcophagus', [sarcoId], options);
+    return safeContractCall(this.thirdPartyFacet, 'clean', [sarcoId], options);
   }
 
   async getRewrapsOnSarcophagus(sarcoId: string) {
     const archData = await getSubgraphSarcophagusWithRewraps(this.subgraphUrl, sarcoId);
+    return archData.rewraps
   }
 
   /**
