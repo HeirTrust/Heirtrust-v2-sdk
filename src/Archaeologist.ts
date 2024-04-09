@@ -22,7 +22,7 @@ import { getLowestResurrectionTime, getLowestRewrapInterval } from './helpers';
 
 /**
  * The ArchaeologistApi class provides a high-level interface for interacting with
- * archaeologists on the Sarcophagus V2 protocol.
+ * archaeologists on the HeirTrust protocol.
  */
 export class Archaeologist {
   private readonly viewStateFacet: ethers.Contract;

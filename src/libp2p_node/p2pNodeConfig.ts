@@ -9,7 +9,8 @@ export const NEGOTIATION_SIGNATURE_STREAM = '/archaeologist-negotiation-signatur
 export const DHT_PROTOCOL_PREFIX = '/archaeologist-service';
 
 const dht = kadDHT({
-  protocolPrefix: DHT_PROTOCOL_PREFIX,
+  // protocolPrefix: DHT_PROTOCOL_PREFIX,
+  protocol: DHT_PROTOCOL_PREFIX,
   clientMode: false,
 });
 
